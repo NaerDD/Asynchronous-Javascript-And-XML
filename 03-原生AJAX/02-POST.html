@@ -8,7 +8,7 @@
         #result{
             width: 200px;
             height: 100px;
-            border: solid 1px #bfa;
+            border: solid 1px #903;
         }
     </style>
 </head>
@@ -19,38 +19,30 @@
         const result = document.getElementById("result")
         //绑定事件
         result.addEventListener("mouseover",function(){
-            // console.log('123');
+            console.log('123');
             //1创建对象
             const xhr = new XMLHttpRequest();
             //2初始化 设置请求的方法和url
             xhr.open('POST','http://127.0.0.1:8000/server');
             //设置请求头
-            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-            xhr.setRequestHeader('name','chenzhiwen');
+            // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            xhr.setRequestHeader('name','NaerDD');
             //3发送
             xhr.send('a=100&b=200&c=300')
+            // xhr.send('a:100&b:200&c:300')
+            // xhr.send('123456789')
             //4事件绑定 处理服务端返回结果
             xhr.onreadystatechange = function(){
-                //处理服务端返回的结果 先判断服务端返回了所有结果
+                //先判断服务端返回了所有结果
                 if(xhr.readyState === 4 ){
-                    //判断响应的状态码 200 404 403 401 500
-                    //2xx都表示成功
+                    //判断响应的状态码 200 404 403 401 500  2xx都表示成功
                     if(xhr.status >= 200 && xhr.status <300){
-                        //处理结果 行 头 空行 体
-                        //1响应行
-                        console.log(xhr.status);//状态码
-                        console.log(xhr.statusText);//状态字符串
-                        console.log(xhr.getAllResponseHeaders());//所有响应头
-                        console.log(xhr.response);//响应体
-
+                        //处理服务端返回的结果 
                         //设置result的文本
                         result.innerHTML = xhr.response;
-                    }else{
-
                     }
                 }
             }
-            
         })
     </script>
 </body>
