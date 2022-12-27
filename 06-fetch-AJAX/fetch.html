@@ -8,10 +8,10 @@
 <body>
     <button>AJAX请求</button>
     <script>
-      const btn = document.querySelectorAll('button');
-
+      const btn = document.querySelector('button');
+      
       btn.onclick = function(){
-          fetch('http://127.0.0.1:8000/fetch-server',{
+          fetch('http://127.0.0.1:8000/fetch-server?vip=10',{
             //请求方法
             method:'POST',
             //请求头
@@ -20,8 +20,15 @@
             },
             //请求体
             body:'username=admin&password=admin'
-          });
+          }).then(Response =>{
+            console.log(Response);
+            // return Response.text();
+            return Response.json();
+          }).then(Response=>{
+            console.log(Response);
+          })
        }
+       
     </script>
 </body>
 </html>

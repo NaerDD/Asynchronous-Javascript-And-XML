@@ -70,6 +70,57 @@ app.all('/fetch-server',(request,response)=>{
     response.send(JSON.stringify(data))
 });
 
+//jsonp服务
+app.all('/jsonp-server',(request,response)=>{
+    // response.send('hello jsonp-server')
+    // response.send('console.log("hello jsonp")')
+    const data = {
+        name:'尚硅谷123'
+      };
+      //将数据转化为字符串
+      let str = JSON.stringify(data);
+      //返回结果
+      response.end(`handle(${str})`);
+})
+
+//用户名检测是否存在
+app.all('/check-username',(request,response)=>{
+    // response.send('console.log("hello jsonp")')
+    const data = {
+        exist:1,
+        msg:'用户名已经存在'
+      };
+      //将数据转化为字符串
+      let str = JSON.stringify(data);
+      //返回结果
+      response.end(`handle(${str})`);
+})
+//JSONP
+app.all('/jQuery-jsonp-server',(request,response)=>{
+    // response.send('console.log("hello jsonp")')
+    const data = {
+        name:'尚硅谷',
+        city:['北京','上海','深圳']
+      };
+      //将数据转化为字符串
+      let str = JSON.stringify(data);
+      //接受 callback 参数
+      let cb = request.query.callback;
+      //返回结果
+      response.end(`${cb}(${str})`);
+})
+//CORS
+app.all('/CORS-server',(request,response)=>{
+    //设置响应头
+    // response.setHeader("Access-Control-Allow-Origin","*")
+    // response.setHeader("Access-Control-Allow-Headers","*")
+    // response.setHeader("Access-Control-Allow-Method","*")
+    //只有5500开头允许访问
+    response.setHeader("Access-Control-Allow-Origin","http://127.0.0.1:5500")
+    response.send("hello CORS")
+
+})
+
 app.all('/server',(request,response)=>{
     //设置响应头  设置允许跨域
     response.setHeader('Access-Control-Allow-Origin','*')
@@ -92,10 +143,8 @@ app.all('/json-server',(request,response)=>{
     response.send(str)
     // let cb = request.query.callback;
     
-
     // response.end(`${cb}(${str})`);
     // response.end(`${cb}(${str})`);
-
 
         //设置响应体
         // response.send('hello ajax JSON')

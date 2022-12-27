@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页</title>
+  <style>
+    #result{
+      width: 300px;
+      height: 100px;
+      border: solid 1px #78a;
+    }
+  </style>
+</head>
+<body>
+  <div id="result"></div>
+  <!-- <script src="./app.js"></script> -->
+  <script>
+     //处理数据
+     function handle(data){
+    //获取result元素
+    const result = document.getElementById('result');
+    result.innerHTML = data.name;
+ }
+  </script>
+  <!-- <script src="http://127.0.0.1:5500/07-%E8%B7%A8%E5%9F%9F/2-JSONP/app.js"></script> -->
+  <script src="http://127.0.0.1:8000/jsonp-server"></script>
+
+    <!-- JSONP 一个非官方的跨域解决方案 只支持get请求
+    JSONP 怎么工作的?
+    一些标签本身具有跨域能力 如 img link iframe script
+    JSONP就是利用script标签的跨域能力来发送请求的 -->
+  
+</body>
+</html>
